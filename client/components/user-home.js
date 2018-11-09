@@ -1,20 +1,42 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import {Row} from 'react-data-grid'
 
-/**
- * COMPONENT
- */
-export const UserHome = props => {
-  const {email} = props
+const makeGrid = () => {
+  for (let i = 0; i < 50; i++) {
+    Array(50).fill('')
+  }
+}
 
-  return (
-    <div>
-      <h3>Welcome, {email}</h3>
-      <div>Here's your high score</div>
-      <div>Here's your list of past scores</div>
-    </div>
-  )
+export class UserHome extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {board: makeGrid()}
+  }
+
+  render() {
+    const {email} = this.props
+
+    return (
+      <React.Fragment>
+        <div>
+          <h3>Welcome, {email}</h3>
+          <div>Here's your high score</div>
+          <div>Here's your list of past scores</div>
+        </div>
+
+        <table>
+          {this.state.board.map((row, yIdx) => (
+            <tr key={yIdx}>
+              {row.map((cell, xIdx) => <td key={xIdx}>{[xIdx, yIdx]}</td>)}
+            </tr>
+          ))}
+        </table>
+      </React.Fragment>
+    )
+  }
 }
 
 /**
