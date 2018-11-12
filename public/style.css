@@ -19,3 +19,16 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+td {
+  height: 30px;
+  width: 50px;
+  background-color: lightblue;
+}
+
+.true {
+  background-color: green;
+}
+.false {
+  background-color: red;
+}

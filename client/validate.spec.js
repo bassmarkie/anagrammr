@@ -5,18 +5,6 @@ const expect = chai.expect
 
 const isValid = require('./validate')
 
-const makeGrid = (x, y) => {
-  let grid = []
-  for (let i = 0; i < y; i++) {
-    let row = []
-    for (let j = 0; j < x; j++) {
-      row.push(j + 1)
-    }
-    grid.push(row)
-  }
-  return grid
-}
-
 describe('check if word is real', () => {
   it('expect dog = true', () => {
     let word = 'dog'

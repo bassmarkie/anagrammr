@@ -1,9 +1,11 @@
-const checkWord = require('check-word')
-const words = checkWord('en')
+// const checkWord = require('check-word')
+// const words = checkWord('en')
+
+const words = require('an-array-of-english-words')
 
 const isValid = {}
 
-isValid.wordCheck = word => words.check(word)
+isValid.wordCheck = word => words.includes(word)
 
 isValid.findWordInRow = graph => {
   let found = []
@@ -28,7 +30,7 @@ isValid.findWordInRow = graph => {
 isValid.findWordInColumn = graph => {
   let found = []
   const findCol = (arr, n) => arr.map(x => x[n])
-  for (let i = 0; i < graph[i].length; i++) {
+  for (let i = 0; i < graph[0].length; i++) {
     let col = findCol(graph, i)
     for (let j = 0; j < col.length; j++) {
       if (col[j] && col[j + 1] && !col[j - 1]) {
