@@ -45,18 +45,17 @@ const makeGrid = () => {
 }
 
 const initialState = {
-  board: makeGrid(),
-  selectedletter: ''
+  board: makeGrid()
 }
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case SET_BOARD:
-      return state
+      return {...state}
     case getLetter:
       return {...state, selectedletter: action.letter}
     case setNewBoard:
-      return action.board
+      return {...state, board: action.board}
     default:
       return state
   }

@@ -25,7 +25,7 @@ export class UserHome extends React.Component {
         alert(
           boardCheck.rowErrors.map(
             elem =>
-              `your word ${elem.word} starting at coord ${
+              `your word ${elem.word} going across and starting at coord ${
                 elem.coord
               } is invalid`
           )
@@ -35,7 +35,7 @@ export class UserHome extends React.Component {
         alert(
           boardCheck.colErrors.map(
             elem =>
-              `your word ${elem.word} starting at coord ${
+              `your word ${elem.word} going down and starting at coord ${
                 elem.coord
               } is invalid`
           )
@@ -46,6 +46,11 @@ export class UserHome extends React.Component {
 
   componentDidMount() {
     this.props.setBoard()
+  }
+
+  componentDidUpdate() {
+    console.log(this.props)
+    // this.props.setBoard()
   }
 
   render() {

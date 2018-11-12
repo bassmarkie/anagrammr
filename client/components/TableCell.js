@@ -18,8 +18,8 @@ export class TableCell extends React.Component {
     console.log(y)
 
     console.log('before', board[x][y])
-    board[x][y] = letter
-    console.log('after', board[x][y])
+    board[y][x] = letter
+    console.log('after', board[y][x])
 
     this.props.setNewBoard(board)
   }
