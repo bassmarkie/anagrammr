@@ -13,26 +13,34 @@ export class UserHome extends React.Component {
     // console.log(this.props.board.board)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
+
   handleSubmit(event) {
     event.preventDefault()
     let currentBoard = this.props.board.board
     const boardCheck = isValid.boardIsValid(currentBoard)
-    if (boardCheck === 'valid') alert('Your board is valid')
-    if (boardCheck.rowErrors.length > 0) {
-      alert(
-        boardCheck.rowErrors.map(
-          elem =>
-            `your word ${elem.word} starting at coord ${elem.coord} is invalid`
+    if (boardCheck === 'valid') {
+      alert('Your board is valid')
+    } else {
+      if (boardCheck.rowErrors.length > 0) {
+        alert(
+          boardCheck.rowErrors.map(
+            elem =>
+              `your word ${elem.word} starting at coord ${
+                elem.coord
+              } is invalid`
+          )
         )
-      )
-    }
-    if (boardCheck.colErrors.length > 0) {
-      alert(
-        boardCheck.colErrors.map(
-          elem =>
-            `your word ${elem.word} starting at coord ${elem.coord} is invalid`
+      }
+      if (boardCheck.colErrors.length > 0) {
+        alert(
+          boardCheck.colErrors.map(
+            elem =>
+              `your word ${elem.word} starting at coord ${
+                elem.coord
+              } is invalid`
+          )
         )
-      )
+      }
     }
   }
 

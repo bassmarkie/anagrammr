@@ -24,6 +24,13 @@ export const setLetter = letter => ({
   letter
 })
 
+export const SET_NEW_BOARD = 'SET_NEW_BOARD'
+
+export const setNewBoard = board => ({
+  type: SET_NEW_BOARD,
+  board
+})
+
 const makeGrid = () => {
   let grid = []
   for (let i = 0; i < 20; i++) {
@@ -48,10 +55,8 @@ export default function(state = initialState, action) {
       return state
     case getLetter:
       return {...state, selectedletter: action.letter}
-    case setLetter:
-      const newState = {board: makeGrid()}
-
-      return newState
+    case setNewBoard:
+      return action.board
     default:
       return state
   }

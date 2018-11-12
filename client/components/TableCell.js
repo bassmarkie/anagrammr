@@ -1,31 +1,51 @@
 import React from 'react'
-import store, {setLetter} from '../store'
+import {setNewBoard} from '../store'
+import {connect} from 'react-redux'
 
-export default class TableCell extends React.Component {
+export class TableCell extends React.Component {
   constructor(props) {
     super(props)
-    // this.handleClick = this.handleClick.bind(this)
-    // console.log('rowIndex', props.rowIndex)
-    // console.log('cellIndex', props.cellIndex)
-    console.log(props.row[props.rowIndex])
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  // handleClick(event) {
-  //   event.preventDefault()
-  //   store.dispatch(colorize(this.props.rowIndex, this.props.cellIndex))
-  // }
-
   handleChange(event) {
-    console.log(event.target.value)
+    const board = this.props.board.board
+    const x = Number(event.target.getAttribute('x'))
+    const y = Number(event.target.getAttribute('y'))
+    const letter = event.target.value
+
+    console.log(x)
+    console.log(y)
+
+    console.log('before', board[x][y])
+    board[x][y] = letter
+    console.log('after', board[x][y])
+
+    this.props.setNewBoard(board)
   }
 
   render() {
     return (
       <td className={this.props.color}>
-        <textarea value={this.props.cell} onChange={this.handleChange}>
-          {this.value}
-        </textarea>
+        <input
+          value={this.props.cell}
+          y={this.props.y}
+          x={this.props.x}
+          onChange={this.handleChange}
+        />
       </td>
     )
   }
 }
+
+const mapState = state => {
+  return {
+    board: state.board
+  }
+}
+
+const mapDispatch = dispatch => ({
+  setNewBoard: board => dispatch(setNewBoard(board))
+})
+
+export default connect(mapState, mapDispatch)(TableCell)
